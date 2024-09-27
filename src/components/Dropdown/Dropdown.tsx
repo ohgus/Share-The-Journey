@@ -1,4 +1,5 @@
-import { ReactNode } from 'react';
+import { ReactNode, Children } from 'react';
+import { Popover } from '@nextui-org/react';
 
 export type DropdownProps = {
   children: ReactNode[];
@@ -7,7 +8,14 @@ export type DropdownProps = {
 const Dropdown = (props: DropdownProps) => {
   const { children } = props;
 
-  return <div>{children}</div>;
+  const [menuTrigger, menu] = Children.toArray(children);
+
+  return (
+    <Popover>
+      {menuTrigger}
+      {menu}
+    </Popover>
+  );
 };
 
 export default Dropdown;
